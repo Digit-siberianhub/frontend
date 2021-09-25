@@ -11,47 +11,25 @@ import { accentColor } from '../../assets/constants';
 export default function UserPage() {
     const {phone} = useParams();
     const [selectedModule, setSelectedModule] = React.useState(0);
-    const [user, setUser] = React.useState({
-        fio: 'Иванов Иван Иванович',
-        type: 'Программист',
-        productivity: '78',
-        modules: [
-            {
-                name: 'Telegram',
-                username: 'kotaro'
-            },
-            {
-                name: 'Яндекс.Почта',
-                username: 'kotaro'
-            },
-            {
-                name: 'GitHub',
-                username: 'kotaro'
-            },
-            {
-                name: 'Jira',
-                username: 'kotaro'
-            },
-            {
-                name: 'Геопозиция',
-                username: 'kotaro'
-            },
-        ]
-    });
+    const [user, setUser] = React.useState();
     const [moduleTypesStatistics, setModuleTypesStatistics] = React.useState();
     const [statisticsData, setStatisticsData] = React.useState([]);
     const [loaded, setLoaded] = React.useState(false);
 
     React.useEffect(() => {
-        // getUserInfo();
-        getModuleTypesStatistics();
-        getStatisticsData();
-        setLoaded(true);
+        const collectAllData = async () => {
+            await getUserInfo();
+            await getModuleTypesStatistics();
+            await getStatisticsData();
+            setLoaded(true);
+        }
+
+        collectAllData();
     }, [])
 
     const getUserInfo = async () => {
         const userInfo = await getUserInfoApiCall(phone);
-        // setUser(userInfo);
+        setUser(userInfo);
     };
 
     const getModuleTypesStatistics = async () => {
@@ -98,10 +76,10 @@ export default function UserPage() {
             <section>
                 <p className="StatisticsTitle">Статистика за месяц</p>
                 <div className="ModuleButtons">
-                    {user.modules.map(item => {
+                    {statisticsData.map(item => {
                         return(
-                            <div className="ModuleButtons__button" onClick={() => setSelectedModule(user.modules.indexOf(item))}>
-                                <p className="ModuleButtons__name" style={{color: user.modules.indexOf(item) === selectedModule ? 'rgb(0, 80, 251)' : 'black'}}>{item.name}</p>
+                            <div className="ModuleButtons__button" onClick={() => setSelectedModule(statisticsData.indexOf(item))}>
+                                <p className="ModuleButtons__name" style={{color: statisticsData.indexOf(item) === selectedModule ? 'rgb(0, 80, 251)' : 'black'}}>{item.datasets[0].label}</p>
                             </div>
                         )
                     })}

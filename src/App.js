@@ -12,7 +12,7 @@ import UserPage from './screens/UserPage/UserPage';
 function App() {
   return (
     <Router>
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
       <Header />
       <Switch>
         <Route path="/user/:phone">

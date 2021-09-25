@@ -1,6 +1,7 @@
 .UsersContainer {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-left: 10%;
+    align-self: center;
 }

@@ -3,38 +3,16 @@ import axios from "axios";
 
 export const getUserStatisticsApiCall = async (phone) => {
     try {
-        // const response = await axios.get(`/statistics/${phone}/`)
-        const response = [
-            {
-                module: 'Telegram',
-                values: [3,5,6,3,2,6,7,4,3,2]
-            },
-            {
-                module: 'Яндекс.Почта',
-                values: [4,6,2,6,8,1,3,5,6,4]
-            },
-            {
-                module: 'GitHub',
-                values: [8,4,2,6,4,1,5,7,4,3]
-            },
-            {
-                module: 'Jira',
-                values: [5,6,3,6,4,7,5,3,7,5]
-            },
-            {
-                module: 'Геопозиция',
-                values: [4,6,4,2,5,7,9,7,7,5]
-            },
-        ]
-
+        const response = await axios.get(`/statistics/${phone}/module/`)
+        console.log(response.data)
         let datasets = []
-        response.forEach((value, index) => {
+        response.data.forEach((value, index) => {
             let labels = []
             for (let i = 0; i < value.values.length; i++) labels.push('');
             datasets.push({
                 labels: labels,
                 datasets: [{
-                    label: value.module,
+                    label: value.name,
                     data: value.values
                 }]
             })

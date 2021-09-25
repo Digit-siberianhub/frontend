@@ -4,6 +4,7 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     border-radius: 15px;
     box-shadow: 1px 1px 3px #ddd;
@@ -15,6 +16,7 @@
         height: 100px;
         object-fit: cover;
         border-radius: 50px;
+        align-self: center;
     }
 
     &__name {
@@ -22,12 +24,14 @@
         font-weight: bold;
         color: #333;
         transition: .3s;
+        text-align: center;
     }
 
     &__points {
         font-weight: bold;
         font-size: 40px;
         margin: 0px;
+        color: rgb(0, 80, 230)
     }
 
     &:hover {
