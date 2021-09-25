@@ -17,52 +17,21 @@ export const getUserStatisticsApiCall = async (phone) => {
                 }]
             })
         })
-        
-        return datasets;
-    } catch (err) {
-        console.log(err);
-        return [];
-    }
-}
 
-export const getModuleTypesStatisticsApiCall = async (phone) => {
-    try {
-        // const response = await axios.get(`/statistics/${phone}/types/`)
-        const response = [
-            {
-                module_type: 'Telegram',
-                value: 30
-            },
-            {
-                module_type: 'Яндекс.Почта',
-                value: 54
-            },
-            {
-                module_type: 'GitHub',
-                value: 13
-            },
-            {
-                module_type: 'Jira',
-                value: 0
-            },
-            {
-                module_type: 'Геопозиция',
-                value: 34
-            },
-        ]
         let labels = [];
         let data = []
-        response.map(item => {
-            labels.push(item.module_type)
-            data.push(item.value)
+        response.data.map(item => {
+            labels.push(item.type)
+            data.push(item.sum)
         })
-        return ({
+        
+        return [datasets, {
             labels: labels,
             datasets: [{
                 label: 'Продуктивность по областям',
                 data: data,
             }]
-        });
+        }];
     } catch (err) {
         console.log(err);
         return [];

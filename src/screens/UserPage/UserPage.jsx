@@ -19,7 +19,6 @@ export default function UserPage() {
     React.useEffect(() => {
         const collectAllData = async () => {
             await getUserInfo();
-            await getModuleTypesStatistics();
             await getStatisticsData();
             setLoaded(true);
         }
@@ -32,15 +31,11 @@ export default function UserPage() {
         setUser(userInfo);
     };
 
-    const getModuleTypesStatistics = async () => {
-        const moduleTypesStatistics = await getModuleTypesStatisticsApiCall(phone);
-        setModuleTypesStatistics(moduleTypesStatistics);
-    };
-
     const getStatisticsData = async () => {
         const statisticsData = await getUserStatisticsApiCall(phone);
         console.log(statisticsData)
-        setStatisticsData(statisticsData);
+        setStatisticsData(statisticsData[0]);
+        setModuleTypesStatistics(statisticsData[1])
     }
 
     return(
@@ -52,7 +47,7 @@ export default function UserPage() {
                 <div className="Profile__infoBlock">
                     <p className="Profile__text">ФИО: {user.fio}</p>
                     <p className="Profile__text">Направление: {user.type}</p>
-                    <p className="Profile__text">Продуктивность: {user.productivity}</p>
+                    <p className="Profile__text">Продуктивность: {user.productivity.toFixed(2)}</p>
                 </div>
                 <div className='Profile__radar'>
                 <Radar
