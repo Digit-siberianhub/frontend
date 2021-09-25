@@ -1,0 +1,100 @@
+.UserPage {
+    display: flex;
+    flex-direction: column;
+
+    .Profile {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 10%;
+
+        &__avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+        }
+
+        &__infoBlock {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 100px;
+        }
+
+        &__text {
+            font-family: 'Arial';
+            font-weight: bold;
+            margin: 5px;
+            font-size: 20px;
+            margin-right: 100px;
+        }
+
+        &__radar {
+            width: 300px;
+            height: 300px;
+        }
+    }
+}
+
+.StatisticsTitle {
+    margin-left: 10%;
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.ModuleButtons {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10%;
+    
+    &__button {
+        padding: 10px;
+        margin: 10px;
+        background-color: white;
+        box-shadow: 1px 1px 3px #ddd;
+        border-radius: 15px;
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover {
+            transition: .3s;
+            box-shadow: 3px 3px 10px #ddd;
+        }
+    }
+
+    &__name {
+        margin: 0;
+        font-family: 'Arial';
+    }
+}
+
+.StatisticsChart {
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 100px;
+}
+
+.Loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    margin:-60px 0 0 -60px;
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+@-moz-keyframes spin { 
+    100% { -moz-transform: rotate(360deg); } 
+}
+@-webkit-keyframes spin { 
+    100% { -webkit-transform: rotate(360deg); } 
+}
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg); 
+        transform:rotate(360deg); 
+    } 
+}
