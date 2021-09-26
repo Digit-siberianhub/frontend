@@ -21,8 +21,12 @@ export const getUserStatisticsApiCall = async (phone) => {
         let labels = [];
         let data = []
         response.data.map(item => {
-            labels.push(item.type)
-            data.push(item.sum)
+            if (!labels.includes(item.type)){
+                labels.push(item.type.slice(0, 3) + '.')
+                data.push(item.sum)
+            } else {
+                data[labels.indexOf(item.type)] = data[labels.indexOf(item.type)] + item.sum
+            }
         })
         
         return [datasets, {
